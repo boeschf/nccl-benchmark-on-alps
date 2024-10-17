@@ -41,7 +41,7 @@ sbatch <<EOT
 #SBATCH --cpus-per-task=${CPUS_PER_TASK}
 #SBATCH --exclusive
 #SBATCH --no-requeue
-##SBATCH --reservation=daint
+#SBATCH --reservation=daint
 
 set -x
 
@@ -58,7 +58,7 @@ export NCCL_TESTS_DEVICE=0
 http_proxy=http://proxy.cscs.ch:8080 https_proxy=https://proxy.cscs.ch:8080 \
 srun -u -l \
     --cpu-bind=${CPUBIND} \
-    --uenv="${UENV}" \
+    --uenv="${UENV}:/user-environment" \
     ${JOBREPORT} -o \${REPORT_DIR} -- \
     ${LAUNCHER} \
     ${BIN} -b 8 -e 4294967296 -f 2 -w 8 -n 24
