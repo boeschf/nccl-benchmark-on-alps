@@ -1,6 +1,6 @@
 name: nccl-tests
 spack:
-  commit: develop
+  commit: develop-2024-10-27
   repo: https://github.com/spack/spack.git
 modules: false
 store: /user-environment

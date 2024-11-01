@@ -10,8 +10,11 @@ test_mpi-env:
   - gcc
   - cray-mpich
   - cuda
-  - nccl
-  - aws-ofi-nccl@master
+  #- nccl@2.22.3-1
+  - nccl@2.21.5-1
+  - aws-ofi-nccl +hcopy
+  #- nccl
+  #- aws-ofi-nccl@master
   - cmake
   variants:
   - +mpi
