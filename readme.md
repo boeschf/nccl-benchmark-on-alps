@@ -73,3 +73,25 @@ The `run.sh` script launches a job. It takes for arguments:
 Have a look at the script to potentially change the slurm parameters, such as
 account and reservation. Be sure to create the output directory `logs` before
 you run the first time.
+
+
+## Pytorch benchmarks
+
+Alternative to the Nvidia's nccl-tests one may also use an allreduce python script
+`all_reduce.py`. This requires building the uenv with pytorch (recipe is located
+int `uenv-recipe-pytorch`).
+
+In order to run, one may use the same launch wrapper script, with a slightly
+adapted run script:
+- make sure to change the uenv image, and the binary
+- actually run the benchmark by 
+```
+http_proxy=http://proxy.cscs.ch:8080 https_proxy=https://proxy.cscs.ch:8080 \
+srun -u -l \
+    --cpu-bind=${CPUBIND} \
+    --uenv="${UENV}:/user-environment" \
+    ${LAUNCHER} \
+    bash -c "
+    python ${BIN}
+    "
+```

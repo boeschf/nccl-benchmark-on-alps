@@ -1,0 +1,40 @@
+test_mpi-env:
+  compiler:
+      - toolchain: gcc
+        spec: gcc
+  mpi:
+      spec: cray-mpich@8.1.30
+      gpu: cuda
+  unify: true
+  specs:
+  - gcc
+  - cray-mpich
+  - cuda
+  #- nccl@2.22.3-1
+  - nccl@2.21.5-1
+  - aws-ofi-nccl +hcopy
+  #- nccl
+  #- aws-ofi-nccl@master
+  - cmake
+  - python
+  - python-venv
+  - py-pip
+  - py-torch +custom-protobuf +distributed +fbgemm ~mkldnn +numpy +openmp +qnnpack ~rocm +numa +cudnn +magma +nccl ~gloo +mpi +onnx_ml +xnnpack +tensorpipe +caffe2 +kineto +valgrind  
+  - py-torch-nvidia-apex@master
+  - py-pytorch-lightning
+  - py-torchvision +ffmpeg +nvjpeg +video_codec
+  - py-torchaudio
+  - py-torchmetrics
+  - py-flash-attn
+  - py-transformer-engine +userbuffers
+  - py-transformers
+  variants:
+  - +mpi
+  - +cuda
+  - cuda_arch=90
+  views:
+    default:
+      link: all
+      uenv:
+        prefix_paths:
+          LD_LIBRARY_PATH: [lib, lib64]

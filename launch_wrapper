@@ -23,7 +23,8 @@ retrieve_cpu_affinity() {
     declare -a cores=()
     # Loop over each character in the affinity mask
     for (( i=0; i<${#extended_mask}; i++ )); do
-        local hex_digit="${extended_mask:i:1}"
+        local ll=${#extended_mask}-1-${i}
+        local hex_digit="${extended_mask:${ll}:1}"
         local decimal_value=$(( 16#$hex_digit ))  # Convert hexadecimal digit to decimal
         local bit_position=0
         # Iterate over each bit in the hexadecimal digit (4 bits per hex digit)

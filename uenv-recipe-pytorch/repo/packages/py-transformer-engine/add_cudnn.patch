@@ -1,0 +1,15 @@
+diff --git i/transformer_engine/common/CMakeLists.txt w/transformer_engine/common/CMakeLists.txt
+index 647d2c4..9864581 100644
+--- i/transformer_engine/common/CMakeLists.txt
++++ w/transformer_engine/common/CMakeLists.txt
+@@ -89,7 +89,9 @@ target_include_directories(transformer_engine PUBLIC
+ target_link_libraries(transformer_engine PUBLIC
+                       CUDA::cublas
+                       CUDA::cuda_driver
+-                      CUDA::cudart)
++                      CUDA::cudart
++                      CUDA::nvrtc
++                      CUDNN::cudnn)
+ target_include_directories(transformer_engine PRIVATE
+                            ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
+ target_include_directories(transformer_engine PRIVATE "${CUDNN_FRONTEND_INCLUDE_DIR}")
